@@ -48,7 +48,7 @@ npm run dev
 
 Open **http://127.0.0.1:5173** and use the email/password you chose during the interactive owner setup. There are no default credentials. The initial owner can invite friends from **Manage vault → People**; public signup is disabled. If an owner already exists, skip owner setup.
 
-Requirements: Node.js 22.12+, Python 3.10+, MongoDB running locally or a configured Atlas connection, and FFmpeg for real waveform generation. The current backend configuration uses Atlas and private Backblaze B2; disposable tests use local MongoDB. Backend environment options are documented in [backend/README.md](backend/README.md).
+Requirements: Node.js 24.x, Python 3.10+, MongoDB running locally or a configured Atlas connection, and FFmpeg for real waveform generation. The current backend configuration uses Atlas and private Backblaze B2; disposable tests use local MongoDB. Backend environment options are documented in [backend/README.md](backend/README.md).
 
 Your 42 MP3s have been imported into private backend storage: 27 Love, 11 Sad/Breakup, and 4 Silent. The original `Songs_data/` files are preserved. Use **Manage vault → Import** or `npm run backend:import` after adding new source files; repeated imports skip identical audio.
 
@@ -73,7 +73,7 @@ npm ci
 npm run dev
 ```
 
-Node.js 22.12+ is required. Browser tests currently use an installed Google Chrome; see the [frontend documentation](frontend/README.md) for Chromium setup.
+Node.js 24.x is required. Browser tests currently use an installed Google Chrome; see the [frontend documentation](frontend/README.md) for Chromium setup.
 
 ## Frontend deployment
 

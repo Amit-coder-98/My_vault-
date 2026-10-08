@@ -47,6 +47,15 @@ In Vercel, choose **Add New Project**, connect GitHub, and import `My_vault-`.
 | Build command | `npm run build:vercel` |
 | Output directory | `dist` |
 
+The frontend's `engines.node` pins Node.js to `24.x`. Its lockfile includes
+the optional native/WASM dependency records needed for Linux builds. Keep
+the install command as `npm ci` and commit lockfile changes alongside changes
+to `frontend/package.json`.
+
+If a previous build reported missing `@emnapi/runtime` or `@emnapi/core`,
+deploy the latest `main` commit containing the repaired lockfile. Check the
+commit shown in Vercel's build log so you are validating the updated source.
+
 Add these **frontend project** environment variables before deploying:
 
 | Variable | Value |

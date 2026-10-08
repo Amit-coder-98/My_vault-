@@ -21,7 +21,7 @@ npm run test:accounts
 npm run preview
 ```
 
-Open http://127.0.0.1:5173. Node.js 22.12+ is required. Tests use installed Google Chrome. If Chrome is unavailable, run `npx playwright install chromium` and remove `channel: "chrome"` from `playwright.config.ts`.
+Open http://127.0.0.1:5173. Node.js 24.x is required. Tests use installed Google Chrome. If Chrome is unavailable, run `npx playwright install chromium` and remove `channel: "chrome"` from `playwright.config.ts`.
 
 Deployment uses `frontend/` as the project directory and `dist/` as the output directory. Serve the frontend and API through one HTTPS origin with `/api` proxied to FastAPI; keep `VITE_API_ORIGIN` empty. The Vite development server proxies `/api` to port 8000. See [the proxy example](deploy/nginx.conf), `.env.example`, and [the root deployment instructions](../README.md).
 
