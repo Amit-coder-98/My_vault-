@@ -82,7 +82,7 @@ before publishing. Production templates and independent frontend/backend Dockerf
 are included, with a root Compose configuration for a server behind an HTTPS ingress.
 For the selected Vercel hosting, follow [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md).
 Import the `frontend` folder into Vercel and deploy the current FastAPI backend
-separately. `frontend/vercel.ts` configures the shared-origin API proxy using
+separately. `frontend/vercel.json` configures the shared-origin API proxy using
 the deployment environment's `VAULT_API_ORIGIN`.
 
 Configure the hosting service to use the frontend folder:

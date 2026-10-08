@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:vercel": "node scripts/check-vercel-env.mjs && npm run build",
     "lint": "oxlint --deny-warnings",
     "typecheck": "tsc -b --pretty false",
     "test:e2e": "playwright test",

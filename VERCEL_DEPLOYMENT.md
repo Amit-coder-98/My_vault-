@@ -44,23 +44,37 @@ In Vercel, choose **Add New Project**, connect GitHub, and import `My_vault-`.
 | Framework | Vite |
 | Node version | 24.x |
 | Install command | `npm ci` |
-| Build command | `npm run build` |
+| Build command | `npm run build:vercel` |
 | Output directory | `dist` |
 
 Add these **frontend project** environment variables before deploying:
 
 | Variable | Value |
 | --- | --- |
-| `VAULT_API_ORIGIN` | Actual backend HTTPS origin, with no `/api` path |
+| `VAULT_API_ORIGIN` | Actual backend HTTPS origin, with no trailing slash or `/api` path |
 | `VITE_API_ORIGIN` | Leave empty or unset |
 | `VITE_DEMO_MODE` | `false` |
 
-`frontend/vercel.ts` reads `VAULT_API_ORIGIN` at deployment time, proxies
-`/api/*` to the same path on the backend, and rewrites the account/admin page
-routes to the SPA. It adds the audited browser security headers and disables
-shared caching of API/audio responses. Missing/invalid backend configuration
-fails clearly rather than producing a deployment with a placeholder upstream.
-See [programmatic Vercel configuration](https://vercel.com/docs/project-configuration/vercel-ts).
+`frontend/vercel.json` uses Vercel's environment-variable expansion in route
+destinations to proxy `/api/*` to the same path on the backend. The import form
+can validate this static configuration before the backend URL is known. The
+Vercel build command checks `VAULT_API_ORIGIN` and the frontend authentication
+settings before building; a missing or invalid URL fails with a clear error.
+The configuration also rewrites the account/admin page routes to the SPA,
+adds the audited browser security headers, and disables shared caching of
+API/audio responses. See
+[environment variables in route destinations](https://vercel.com/docs/project-configuration/vercel-json#in-route-destinations).
+
+If the import form previously displayed `rewrites[0] missing required property
+destination`, refresh or reopen the import after the latest GitHub commit is
+available. The old computed TypeScript rewrite has been replaced by the static
+configuration. Keep Root Directory `frontend` and Application Preset `Vite`.
+
+Find the API URL in Render by opening **Dashboard → your backend web service**.
+Copy the public `https://....onrender.com` address shown near the top. If the
+service has not been created, finish the Docker backend deployment first. Add
+that URL as `VAULT_API_ORIGIN` in the Vercel import form's **Environment
+Variables** before clicking **Deploy**. The example URL is not a working API.
 
 Keep Atlas, B2 and auth secrets on the backend host. They do not belong in the
 Vercel frontend project or `VITE_*` variables. `.env` and original audio files
