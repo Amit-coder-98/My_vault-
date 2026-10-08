@@ -1,0 +1,36 @@
+# Run behind an HTTPS ingress. Only the frontend is reachable on the host,
+# and only through loopback. Never publish the backend's port directly.
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env.production
+    environment:
+      # Safe here because only the frontend proxy can reach the API externally.
+      FORWARDED_ALLOW_IPS: "*"
+    volumes:
+      - processing:/data
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - vault
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - vault
+
+volumes:
+  processing:
+
+networks:
+  vault:

@@ -1,0 +1,15 @@
+.env
+.env.*
+.runtime-secret
+.owner-setup.json
+.venv
+venv
+storage
+Songs_data
+tests
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+*.log

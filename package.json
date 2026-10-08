@@ -1,0 +1,29 @@
+{
+  "name": "my-music-vault",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Independent frontend and backend commands for My Music Vault.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "setup": "npm --prefix frontend ci",
+    "setup:backend": "node scripts/backend.mjs setup",
+    "dev:backend": "node scripts/backend.mjs dev",
+    "backend:owner": "node scripts/backend.mjs setup-owner",
+    "backend:import": "node scripts/backend.mjs import-songs",
+    "backend:check": "node scripts/backend.mjs check-services",
+    "backend:migrate-storage": "node scripts/backend.mjs migrate-storage",
+    "backend:cleanup-storage": "node scripts/backend.mjs cleanup-storage",
+    "backend:recovery": "node scripts/backend.mjs owner-recovery",
+    "test:backend": "node scripts/backend.mjs test",
+    "lint:backend": "node scripts/backend.mjs lint",
+    "test:accounts": "npm --prefix frontend run test:accounts --",
+    "dev": "npm --prefix frontend run dev --",
+    "build": "npm --prefix frontend run build --",
+    "lint": "npm --prefix frontend run lint --",
+    "typecheck": "npm --prefix frontend run typecheck --",
+    "test:e2e": "npm --prefix frontend run test:e2e --",
+    "preview": "npm --prefix frontend run preview --"
+  }
+}
